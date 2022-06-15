@@ -6,7 +6,7 @@ function DayListItem(props) {
   const name = "Monday";
   const spots = 6;
   const selected = false;
-  const day = "Tuesday";
+  const day = props.name;
   
 
   const dayClass = classNames("day-list__item", {
