@@ -22,7 +22,6 @@ const days = [
 
 export default function Application(){
   const [day, setDay] = useState('Monday');
-  console.log(day);
   return (
     <main className="layout">
       <section className="sidebar">
@@ -35,8 +34,8 @@ export default function Application(){
         <nav className="sidebar__menu">
           <DayList
             days={days}
-            day={day}
-            setDay={setDay}
+            value={day}
+            onChange={setDay}
           />
         </nav>
         <img
