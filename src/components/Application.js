@@ -13,9 +13,6 @@ export default function Application(){
     appointments: {}
   });
 
-  //holds a list of appointments for the day
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
@@ -28,8 +25,11 @@ export default function Application(){
   });
   }, []);
 
+  //holds a list of appointments for the day
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
-  const appointment = dailyAppointments.map(appointment => {
+  //generate the Appointment components
+  const schedule = dailyAppointments.map(appointment => {
     return (
       <Appointment 
         key={appointment.id} 
@@ -62,7 +62,7 @@ export default function Application(){
         />
       </section>
       <section className="schedule">
-      {appointment}
+      {schedule}
       <Appointment key="last" time="5pm" />
       </section>
     </main>
