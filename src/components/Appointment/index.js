@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from './Form';
 import useVisualMode from 'hooks/useVisualMode';
 
+
 function Appointment(props){
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -30,7 +31,7 @@ function Appointment(props){
         <Form
           value = {props.value}
           name = {props.name}
-          interviewers = {[]}
+          interviewers = {props.interviewers}
           onCancel = {back}
         />
       }
