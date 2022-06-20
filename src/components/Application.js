@@ -10,7 +10,7 @@ export default function Application(){
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    interviewers: {}
   });
 
   const setDay = day => setState({ ...state, day });
@@ -25,6 +25,22 @@ export default function Application(){
   });
   }, []);
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`, {interview})
+    .then((res) => {setState({...state, appointments})})
+    .catch(err => console.log(err))
+  }
+
   //holds a list of appointments for the day
   const dailyAppointments = getAppointmentsForDay(state, state.day);
    //holds a list of interviewers for the day
@@ -34,12 +50,14 @@ export default function Application(){
   const schedule = dailyAppointments.map(appointment => {
   const interview = getInterview(state, appointment.interview);
 
+
     return (
       <Appointment 
         key={appointment.id}
         {...appointment} //spread the object into the props definition
         interview={interview}
         interviewers={interviewers}
+        bookInterview = {bookInterview}
       />
     );
   });
@@ -68,7 +86,10 @@ export default function Application(){
       </section>
       <section className="schedule">
       {schedule}
-      <Appointment key="last" time="5pm" />
+      <Appointment 
+        key="last"
+        time="5pm"
+      />
       </section>
     </main>
   );
