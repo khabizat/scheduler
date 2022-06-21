@@ -5,6 +5,7 @@ import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
+//separation of concerns - logic for passing data to other components
 export default function Application(props){
 
   const {
