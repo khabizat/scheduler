@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
 import useVisualMode from 'hooks/useVisualMode';
 
 
@@ -17,6 +18,9 @@ function Appointment(props){
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
+
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -29,7 +33,8 @@ function Appointment(props){
     };
     transition(SAVING);
     props.bookInterview(props.id, interview)
-    .then(()=> transition(SHOW));
+    .then(()=> transition(SHOW))
+    .catch(error => transition(ERROR_SAVE, true))
   }
 
   //delete an interview with confirmation dialog
@@ -37,9 +42,10 @@ function Appointment(props){
     if (mode !== CONFIRM) {
       transition(CONFIRM);
     } else {
-    transition(DELETING)
+    transition(DELETING, true)
     props.cancelInterview(props.id)
-    .then(()=>transition(EMPTY));
+    .then(()=>transition(EMPTY))
+    .catch(error => transition(ERROR_DELETE, true))
     }
   }
 
@@ -74,7 +80,7 @@ function Appointment(props){
       }
       {mode === CONFIRM &&
         <Confirm
-          message="Are you sure you would like to cancel"
+          message="Are you sure you would like to delete"
           onCancel = {back}
           onConfirm = {remove}
         />
@@ -86,6 +92,18 @@ function Appointment(props){
           interviewers = {props.interviewers}
           onCancel = {back}
           onSave = {save}
+        />
+      }
+      {mode === ERROR_SAVE &&
+        <Error
+          message="Unfortunately this appointment cannot be saved"
+          onClose = {back}
+        />
+      }
+      {mode === ERROR_DELETE &&
+        <Error 
+          message="Unfortunately this appointment cannot be deleted"
+          onClose = {back}
         />
       }
     </article>
