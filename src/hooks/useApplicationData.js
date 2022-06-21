@@ -23,9 +23,24 @@ export default function useApplicationData(props){
   });
   }, []);
 
+  function updateSpots(state, appointments) {
+
+    return state.days.map((day)=> {
+      let newSpots = 0;
+      // get appointment id from day
+      for (let appID of day.appointments) {
+        // get appointment by ID
+        if (appointments[appID].interview === null) {
+          newSpots += 1;
+        };
+      }
+      const newDay = {...day, spots: newSpots}
+      return newDay;
+    })
+  }
+
   //makes an HTTP request and updates the local state
   function bookInterview(id, interview) {
-    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -34,8 +49,12 @@ export default function useApplicationData(props){
       ...state.appointments,
       [id]: appointment
     };
+
+    const newDays = updateSpots(state, appointments);
     return axios.put(`/api/appointments/${id}`, {interview})
-    .then(() => {setState({...state, appointments})})
+    .then(() => {
+      setState({...state, appointments, days: newDays})
+    })
   }
 
   //makes an HTTP request and updates the local state
@@ -48,8 +67,12 @@ export default function useApplicationData(props){
       ...state.appointments,
       [id]: appointment
     };
+
+    const newDays = updateSpots(state, appointments)
     return axios.delete(`/api/appointments/${id}`)
-    .then(() => {setState({...state, appointments})})
+    .then(() => {
+      setState({...state, appointments, days: newDays})
+    })
   }
 
   return {
