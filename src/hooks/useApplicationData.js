@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+//separation of concerns - logic for managing the state (data management)
 export default function useApplicationData(props){
   const [state, setState] = useState({
     day: "Monday",
