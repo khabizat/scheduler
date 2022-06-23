@@ -1,5 +1,20 @@
 # Interview Scheduler
 
+## Final product
+
+### Main view of the app
+!["Main appointments view"](docs/appointment-view.png)
+
+### Adding a new appointment
+!["Adding new appointment"](docs/add-new-appointment.png)
+
+### New appointment added
+!["View of the newly added appointment"](docs/new-appointment-added.png)
+
+### Confirmation step before deleting an appointment
+!["Confirmation before deleting appointment"](docs/confirmation-step.png)
+
+
 ## Setup
 
 Install dependencies with `npm install`.
