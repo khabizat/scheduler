@@ -36,8 +36,8 @@ export default function useApplicationData(props){
       }
       const newDay = {...day, spots: newSpots}
       return newDay;
-    })
-  }
+    });
+  };
 
   //makes an HTTP request and updates the local state
   function bookInterview(id, interview) {
@@ -53,9 +53,9 @@ export default function useApplicationData(props){
     const newDays = updateSpots(state, appointments);
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(() => {
-      setState({...state, appointments, days: newDays})
-    })
-  }
+      setState({...state, appointments, days: newDays});
+    });
+  };
 
   //makes an HTTP request and updates the local state
   function cancelInterview(id) {
@@ -71,9 +71,9 @@ export default function useApplicationData(props){
     const newDays = updateSpots(state, appointments)
     return axios.delete(`/api/appointments/${id}`)
     .then(() => {
-      setState({...state, appointments, days: newDays})
-    })
-  }
+      setState({...state, appointments, days: newDays});
+    });
+  };
 
   return {
     state,

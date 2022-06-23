@@ -11,7 +11,7 @@ function DayListItem(props) {
     "day-list__item--full": !props.spots
   });
 
-  const formatSpots = function(spots) {
+  function formatSpots(spots) {
     if (!spots) {
       return 'no spots remaining';
     }

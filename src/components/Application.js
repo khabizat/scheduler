@@ -6,7 +6,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 import useApplicationData from "hooks/useApplicationData";
 
 //separation of concerns - logic for passing data to other components
-export default function Application(props){
+export default function Application(props) {
 
   const {
     state,
@@ -52,11 +52,11 @@ export default function Application(props){
         />
       </section>
       <section className="schedule">
-      {schedule}
-      <Appointment 
-        key="last"
-        time="5pm"
-      />
+        {schedule}
+        <Appointment 
+          key="last"
+          time="5pm"
+        />
       </section>
     </main>
   );

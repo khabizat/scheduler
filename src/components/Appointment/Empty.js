@@ -1,6 +1,6 @@
 import React from "react";
 
-function Empty(props){
+function Empty(props) {
   return(
     <main className="appointment__add">
       <img
@@ -9,7 +9,7 @@ function Empty(props){
         src="images/add.png"
         alt="Add"
       />
-  </main>
+    </main>
   );
 }
 
