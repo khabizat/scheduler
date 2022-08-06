@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 //separation of concerns - logic for managing the state (data management)
-export default function useApplicationData(props){
+export default function useApplicationData(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -23,7 +23,7 @@ export default function useApplicationData(props){
   });
   }, []);
 
-  function updateSpots(state, appointments) {
+  const updateSpots = (state, appointments) => {
 
     return state.days.map((day)=> {
       let newSpots = 0;
@@ -40,7 +40,7 @@ export default function useApplicationData(props){
   };
 
   //makes an HTTP request and updates the local state
-  function bookInterview(id, interview) {
+  const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -58,7 +58,7 @@ export default function useApplicationData(props){
   };
 
   //makes an HTTP request and updates the local state
-  function cancelInterview(id) {
+  const cancelInterview = id => {
     const appointment = {
       ...state.appointments[id],
       interview: null
