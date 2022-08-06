@@ -1,5 +1,13 @@
 # Interview Scheduler
 
+## Project Tech Stack
+
+Front-End: React, JavaScript, Axios, JSX, HTML, SASS, Webpack
+
+Back-End: Express, Node.js, PostgreSQL
+
+Testing: Storybook Jest, Cypress
+
 ## Final product
 
 ### Main view of the app
