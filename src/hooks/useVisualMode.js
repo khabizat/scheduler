@@ -8,7 +8,6 @@ export default function useVisualMode(initial) {
     if(replace) {
       setMode(newMode);
     } else {
-      setHistory((prev)=>[...history, newMode]);
       setMode(newMode);
     }
   };
