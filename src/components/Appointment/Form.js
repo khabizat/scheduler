@@ -4,9 +4,12 @@ import Button from "components/Button";
 
 function Form(props) {
 
+  const {onCancel, onSave, interviewers} = props;
+
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
+  
 
   function reset() {
     setStudent("");
@@ -16,7 +19,7 @@ function Form(props) {
 
   function cancel() {
     reset();
-    props.onCancel();
+    onCancel();
   }
 
   //validates user input
@@ -30,7 +33,7 @@ function Form(props) {
       return;
     }
     setError("");
-    props.onSave(student, interviewer);
+    onSave(student, interviewer);
   }
   
   
@@ -50,7 +53,7 @@ function Form(props) {
         </form>
         <section className="appointment__validation">{error}</section>
         <InterviewerList
-          interviewers = {props.interviewers}
+          interviewers = {interviewers}
           value={interviewer}
           onChange={setInterviewer}
         />
