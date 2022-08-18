@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-## Project Tech Stack
+## Tech Stack
 
 Front-End: React, JavaScript, Axios, JSX, HTML, SASS, Webpack
 
@@ -10,7 +10,7 @@ Testing: Storybook Jest, Cypress
 
 ## Final product
 
-### Main view of the app
+### Main view
 !["Main appointments view"](docs/appointment-view.png)
 
 ### Adding a new appointment
