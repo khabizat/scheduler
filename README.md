@@ -25,6 +25,8 @@ Testing: Storybook Jest, Cypress
 
 ## Setup
 
+Fork https://github.com/lighthouse-labs/scheduler-api and follow setup instructions to run api server
+
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
