@@ -11,6 +11,7 @@ function Show(props) {
           <img
             className="interviewers__item-image"
             src={props.interviewer.avatar}
+            alt={props.interviewer.avatar}
           />
         </section>
       </section>
